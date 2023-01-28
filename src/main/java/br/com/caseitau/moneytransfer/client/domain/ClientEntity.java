@@ -1,15 +1,35 @@
-package br.com.caseitau.moneytransfer.client.controller;
+package br.com.caseitau.moneytransfer.client.domain;
+
+import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
-public class CreateClientResponse {
+@Entity
+@Table(name = "clients")
+public class ClientEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    @Column
     private String name;
+
+    @Column
     private String accountNumber;
+
+    @Column
     private BigDecimal accountBalance;
 
-    public CreateClientResponse(UUID id, String name, String accountNumber, BigDecimal accountBalance) {
+    @Column
+    private ZonedDateTime createdAt;
+
+    @Column
+    private ZonedDateTime updatedAt;
+
+    private ClientEntity(UUID id, String name, String accountNumber, BigDecimal accountBalance) {
         this.id = id;
         this.name = name;
         this.accountNumber = accountNumber;
@@ -32,6 +52,24 @@ public class CreateClientResponse {
         return accountBalance;
     }
 
+    public ZonedDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public ZonedDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    @PrePersist
+    protected void prePersist() {
+        createdAt = ZonedDateTime.now();
+    }
+
+    @PreUpdate
+    protected void preUpdate() {
+        updatedAt = ZonedDateTime.now();
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -42,8 +80,7 @@ public class CreateClientResponse {
         private String accountNumber;
         private BigDecimal accountBalance;
 
-        private Builder() {
-        }
+        private Builder() {}
 
         public Builder id(UUID id) {
             this.id = id;
@@ -65,8 +102,8 @@ public class CreateClientResponse {
             return this;
         }
 
-        public CreateClientResponse build() {
-            return new CreateClientResponse(id, name, accountNumber, accountBalance);
+        public ClientEntity build() {
+            return new ClientEntity(id, name, accountNumber, accountBalance);
         }
     }
 }
