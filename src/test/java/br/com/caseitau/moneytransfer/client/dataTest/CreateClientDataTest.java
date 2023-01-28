@@ -1,4 +1,4 @@
-package br.com.caseitau.moneytransfer.client.unit.CreateClientUseCase;
+package br.com.caseitau.moneytransfer.client.dataTest;
 
 import br.com.caseitau.moneytransfer.client.domain.repository.ClientPersist;
 import br.com.caseitau.moneytransfer.client.useCases.createClientUseCase.CreateClientDTO;

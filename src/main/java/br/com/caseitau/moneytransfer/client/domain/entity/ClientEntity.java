@@ -16,7 +16,7 @@ public class ClientEntity {
     @Column
     private final String name;
 
-    @Column
+    @Column(unique = true)
     private final String accountNumber;
 
     @Column

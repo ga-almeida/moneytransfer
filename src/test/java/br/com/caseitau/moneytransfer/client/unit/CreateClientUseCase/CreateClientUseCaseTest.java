@@ -1,5 +1,6 @@
 package br.com.caseitau.moneytransfer.client.unit.CreateClientUseCase;
 
+import br.com.caseitau.moneytransfer.client.dataTest.CreateClientDataTest;
 import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
 import br.com.caseitau.moneytransfer.client.useCases.createClientUseCase.CreateClientUseCase;
 import br.com.caseitau.moneytransfer.core.BaseUnitTest;
@@ -11,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
-public class CreateClientUseCaseTest extends BaseUnitTest {
+@BaseUnitTest
+public class CreateClientUseCaseTest {
     private CreateClientUseCase sut;
     @Mock
     private ClientRepository clientRepository;
