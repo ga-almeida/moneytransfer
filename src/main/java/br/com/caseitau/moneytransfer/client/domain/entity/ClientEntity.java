@@ -1,7 +1,6 @@
-package br.com.caseitau.moneytransfer.client.domain;
+package br.com.caseitau.moneytransfer.client.domain.entity;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -12,16 +11,16 @@ import java.util.UUID;
 public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private final UUID id;
 
     @Column
-    private String name;
+    private final String name;
 
     @Column
-    private String accountNumber;
+    private final String accountNumber;
 
     @Column
-    private BigDecimal accountBalance;
+    private final BigDecimal accountBalance;
 
     @Column
     private ZonedDateTime createdAt;
@@ -29,11 +28,17 @@ public class ClientEntity {
     @Column
     private ZonedDateTime updatedAt;
 
-    private ClientEntity(UUID id, String name, String accountNumber, BigDecimal accountBalance) {
+    private ClientEntity(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public UUID getId() {
@@ -70,17 +75,16 @@ public class ClientEntity {
         updatedAt = ZonedDateTime.now();
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     public static final class Builder {
         private UUID id;
         private String name;
         private String accountNumber;
         private BigDecimal accountBalance;
+        private ZonedDateTime createdAt;
+        private ZonedDateTime updatedAt;
 
-        private Builder() {}
+        private Builder() {
+        }
 
         public Builder id(UUID id) {
             this.id = id;
@@ -102,8 +106,18 @@ public class ClientEntity {
             return this;
         }
 
+        public Builder createdAt(ZonedDateTime createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder updatedAt(ZonedDateTime updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
         public ClientEntity build() {
-            return new ClientEntity(id, name, accountNumber, accountBalance);
+            return new ClientEntity(id, name, accountNumber, accountBalance, createdAt, updatedAt);
         }
     }
 }

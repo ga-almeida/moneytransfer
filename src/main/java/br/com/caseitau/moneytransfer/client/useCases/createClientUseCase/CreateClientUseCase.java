@@ -1,13 +1,22 @@
 package br.com.caseitau.moneytransfer.client.useCases.createClientUseCase;
 
 import br.com.caseitau.moneytransfer.client.controller.CreateClientResponse;
+import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
 import br.com.caseitau.moneytransfer.client.mapper.CreateClientMapper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateClientUseCase {
 
-    public CreateClientResponse execute(CreateClientDTO createClientDTO) {
-        var clientEntity = CreateClientMapper.DtoFromEntity(createClientDTO);
+    private final ClientRepository clientRepository;
 
-        return CreateClientMapper.EntityFromResponse(clientEntity);
+    public CreateClientUseCase(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
+
+    public CreateClientResponse execute(CreateClientDTO createClientDTO) {
+        var clientPersist = clientRepository.save(createClientDTO);
+
+        return CreateClientMapper.persistFromResponse(clientPersist);
     }
 }
