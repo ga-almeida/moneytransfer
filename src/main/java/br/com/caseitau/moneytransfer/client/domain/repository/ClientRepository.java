@@ -1,7 +1,7 @@
 package br.com.caseitau.moneytransfer.client.domain.repository;
 
-import br.com.caseitau.moneytransfer.client.useCases.createClientUseCase.CreateClientDTO;
+import br.com.caseitau.moneytransfer.client.dto.CreateClientDTO;
 
 public interface ClientRepository {
-    ClientPersist save(CreateClientDTO createClientDTO);
+    CreateClientDTO save(CreateClientDTO createClientDTO);
 }

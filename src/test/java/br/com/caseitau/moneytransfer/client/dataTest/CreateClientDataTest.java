@@ -1,7 +1,6 @@
 package br.com.caseitau.moneytransfer.client.dataTest;
 
-import br.com.caseitau.moneytransfer.client.domain.repository.ClientPersist;
-import br.com.caseitau.moneytransfer.client.useCases.createClientUseCase.CreateClientDTO;
+import br.com.caseitau.moneytransfer.client.dto.CreateClientDTO;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -17,8 +16,8 @@ public final class CreateClientDataTest {
                 .build();
     }
 
-    public static ClientPersist clientPersistSaved() {
-        return ClientPersist.builder()
+    public static CreateClientDTO clientSavedDatabase() {
+        return CreateClientDTO.builder()
                 .id(UUID.randomUUID())
                 .name(NAME_JOHN_DOE)
                 .accountNumber(ACCOUNT_NUMBER_JOHN_DOE)

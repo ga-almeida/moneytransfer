@@ -1,11 +1,13 @@
 package br.com.caseitau.moneytransfer.client.integration;
 
 import br.com.caseitau.moneytransfer.client.dataTest.CreateClientDataTest;
+import br.com.caseitau.moneytransfer.client.useCases.CreateClientUseCase;
 import br.com.caseitau.moneytransfer.core.BaseIntegrationTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -21,6 +23,9 @@ public class CreateClientIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @MockBean
+    private CreateClientUseCase createClientUseCase;
+
     private ObjectMapper createClientMapper;
 
     @BeforeEach
@@ -32,9 +37,9 @@ public class CreateClientIntegrationTest {
     void givenCreateClientValid_WhenCallCreateClientController_ThenReturnSuccess() throws Exception {
 
         mockMvc.perform(
-                        post("/client")
+                        post("/v1/client")
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .contentType(createClientMapper.writeValueAsString(CreateClientDataTest.validCreateClientDTO()))
+                                .content(createClientMapper.writeValueAsString(CreateClientDataTest.validCreateClientDTO()))
                 )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").isNotEmpty())

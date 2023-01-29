@@ -2,17 +2,17 @@ package br.com.caseitau.moneytransfer.client.mapper;
 
 import br.com.caseitau.moneytransfer.client.controller.CreateClientResponse;
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
-import br.com.caseitau.moneytransfer.client.domain.repository.ClientPersist;
-import br.com.caseitau.moneytransfer.client.useCases.createClientUseCase.CreateClientDTO;
+import br.com.caseitau.moneytransfer.client.dto.CreateClientDTO;
 
 public final class CreateClientMapper {
 
-    public static CreateClientResponse persistFromResponse(ClientPersist clientPersist) {
+    public static CreateClientResponse dtoFromResponse(CreateClientDTO createClientDTO) {
         return CreateClientResponse.builder()
-                .id(clientPersist.getId())
-                .name(clientPersist.getName())
-                .accountNumber(clientPersist.getAccountNumber())
-                .accountBalance(clientPersist.getAccountBalance())
+                .id(createClientDTO.getId())
+                .name(createClientDTO.getName())
+                .accountNumber(createClientDTO.getAccountNumber())
+                .accountBalance(createClientDTO.getAccountBalance())
+                .createdAt(createClientDTO.getCreatedAt())
                 .build();
     }
 
@@ -24,14 +24,13 @@ public final class CreateClientMapper {
                 .build();
     }
 
-    public static ClientPersist entityFromPersist(ClientEntity clientEntity) {
-        return ClientPersist.builder()
+    public static CreateClientDTO entityFromDto(ClientEntity clientEntity) {
+        return CreateClientDTO.builder()
                 .id(clientEntity.getId())
                 .name(clientEntity.getName())
                 .accountNumber(clientEntity.getAccountNumber())
                 .accountBalance(clientEntity.getAccountBalance())
                 .createdAt(clientEntity.getCreatedAt())
-                .updatedAt(clientEntity.getUpdatedAt())
                 .build();
     }
 }
