@@ -1,6 +1,6 @@
 package br.com.caseitau.moneytransfer.client.mapper;
 
-import br.com.caseitau.moneytransfer.client.controller.CreateClientResponse;
+import br.com.caseitau.moneytransfer.client.controller.createClient.CreateClientResponse;
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 import br.com.caseitau.moneytransfer.client.dto.CreateClientDTO;
 

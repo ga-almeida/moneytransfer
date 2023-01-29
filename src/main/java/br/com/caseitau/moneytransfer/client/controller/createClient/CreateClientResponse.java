@@ -1,4 +1,4 @@
-package br.com.caseitau.moneytransfer.client.controller;
+package br.com.caseitau.moneytransfer.client.controller.createClient;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;

@@ -39,12 +39,12 @@ public class CreateClientIntegrationTest {
         mockMvc.perform(
                         post("/v1/client")
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(createClientMapper.writeValueAsString(CreateClientDataTest.validCreateClientDTO()))
+                                .content(createClientMapper.writeValueAsString(CreateClientDataTest.basicCreateClientDTO()))
                 )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").isNotEmpty())
                 .andExpect(jsonPath("$.name").value("JOHN DOE"))
-                .andExpect(jsonPath("$.name").value("123456"))
-                .andExpect(jsonPath("$.name").value(BigDecimal.ZERO));
+                .andExpect(jsonPath("$.accountNumber").value("123456"))
+                .andExpect(jsonPath("$.accountBalance").value(BigDecimal.ZERO));
     }
 }

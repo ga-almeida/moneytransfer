@@ -1,4 +1,4 @@
-package br.com.caseitau.moneytransfer.client.controller;
+package br.com.caseitau.moneytransfer.client.controller.createClient;
 
 import br.com.caseitau.moneytransfer.client.useCases.CreateClientUseCase;
 import org.springframework.http.ResponseEntity;
