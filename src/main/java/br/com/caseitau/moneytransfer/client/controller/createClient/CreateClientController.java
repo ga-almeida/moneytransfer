@@ -2,7 +2,6 @@ package br.com.caseitau.moneytransfer.client.controller.createClient;
 
 import br.com.caseitau.moneytransfer.client.controller.ResponseEntityTypes;
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
-import br.com.caseitau.moneytransfer.client.dto.CreateClientDTO;
 import br.com.caseitau.moneytransfer.client.useCases.CreateClientUseCase;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-public class CreateClientDTO {
+public class ClientDTO {
     private UUID id;
     private String name;
     private String accountNumber;
@@ -40,7 +40,7 @@ public class CreateClientDTO {
         return updateAt;
     }
 
-    private CreateClientDTO(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt, ZonedDateTime updateAt) {
+    private ClientDTO(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt, ZonedDateTime updateAt) {
         this.id = id;
         this.name = name;
         this.accountNumber = accountNumber;
@@ -89,8 +89,8 @@ public class CreateClientDTO {
             return this;
         }
 
-        public CreateClientDTO build() {
-            return new CreateClientDTO(id, name, accountNumber, accountBalance, createdAt, updateAt);
+        public ClientDTO build() {
+            return new ClientDTO(id, name, accountNumber, accountBalance, createdAt, updateAt);
         }
     }
 }

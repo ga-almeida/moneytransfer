@@ -41,7 +41,7 @@ public class CreateClientIntegrationTest {
 
         var resultURL = mockMvc.perform(post("/v1/client")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(createClientMapper.writeValueAsString(ClientDataTest.basicCreateClientDTO())))
+                        .content(createClientMapper.writeValueAsString(ClientDataTest.basicCreateClientJohnDoe())))
                 .andExpect(request().asyncStarted())
 //                .andExpect(request().asyncResult(instanceOf(ResponseEntity.class)))
                 .andReturn();

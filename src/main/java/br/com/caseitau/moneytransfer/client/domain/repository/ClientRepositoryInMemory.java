@@ -1,12 +1,12 @@
 package br.com.caseitau.moneytransfer.client.domain.repository;
 
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
-import br.com.caseitau.moneytransfer.client.dto.CreateClientDTO;
-import br.com.caseitau.moneytransfer.client.mapper.CreateClientMapper;
+import br.com.caseitau.moneytransfer.client.dto.ClientDTO;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class ClientRepositoryInMemory implements ClientRepository {
@@ -14,7 +14,7 @@ public class ClientRepositoryInMemory implements ClientRepository {
     private List<ClientEntity> clientEntities = new ArrayList<>();
 
     @Override
-    public ClientEntity save(CreateClientDTO createClientDTO) {
+    public ClientEntity save(ClientDTO createClientDTO) {
         var clientEntity = ClientEntity.builder()
                 .id(UUID.randomUUID())
                 .name(createClientDTO.getName())
@@ -37,5 +37,10 @@ public class ClientRepositoryInMemory implements ClientRepository {
     @Override
     public List<ClientEntity> findAll() {
         return clientEntities;
+    }
+
+    @Override
+    public Optional<ClientEntity> findOne(String accountNumber) {
+        return clientEntities.stream().filter(client -> client.getAccountNumber().equals(accountNumber)).findFirst();
     }
 }

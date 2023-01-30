@@ -11,16 +11,16 @@ import java.util.UUID;
 public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private final UUID id;
+    private UUID id;
 
     @Column
-    private final String name;
+    private String name;
 
     @Column(unique = true)
-    private final String accountNumber;
+    private String accountNumber;
 
     @Column
-    private final BigDecimal accountBalance;
+    private BigDecimal accountBalance;
 
     @Column
     private ZonedDateTime createdAt;

@@ -8,10 +8,6 @@ import br.com.caseitau.moneytransfer.core.BaseUnitTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
-import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -32,7 +28,7 @@ public class ListClientsUseCaseTest {
     @DisplayName("When calling list clients use case, then it returns all clients.")
     void listClientsUseCaseSuccess() {
         for (int i = 0; i < 5; i++) {
-            clientRepository.save(ClientDataTest.basicCreateClientDTO());
+            clientRepository.save(ClientDataTest.basicCreateClientJohnDoe());
         }
 
         var listClientsResponse = sut.execute();

@@ -18,4 +18,7 @@ public final class ResponseEntityTypes {
         return ResponseEntity.status(CONFLICT).body(responseError);
     }
 
+    public static <T> ResponseEntity<T> notFound(T responseError) {
+        return ResponseEntity.status(NOT_FOUND).body(responseError);
+    }
 }

@@ -1,7 +1,7 @@
 package br.com.caseitau.moneytransfer.client.integration;
 
 import br.com.caseitau.moneytransfer.client.dataTest.ClientDataTest;
-import br.com.caseitau.moneytransfer.client.dto.CreateClientDTO;
+import br.com.caseitau.moneytransfer.client.dto.ClientDTO;
 import br.com.caseitau.moneytransfer.core.BaseIntegrationTest2;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
@@ -32,7 +32,7 @@ public class CreateClientIntegrationTest2 {
     @DisplayName("Given a valid client, when calling the created client controller, then it returns status code 201.")
     void createClientControllerStatusCreated() throws Exception {
 
-        CreateClientDTO createClientDTO = ClientDataTest.basicCreateClientDTO();
+        ClientDTO createClientDTO = ClientDataTest.basicCreateClientJohnDoe();
 
         Response response = given()
                 .header("Content-type", "application/json")

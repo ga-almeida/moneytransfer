@@ -26,7 +26,7 @@ public class CreateClientUseCaseTest {
     @Test
     @DisplayName("Given a valid client, when calling the created client use case, then it returns a registered client.")
     void createClientUseCaseSuccess() {
-        var createClientDTO = ClientDataTest.basicCreateClientDTO();
+        var createClientDTO = ClientDataTest.basicCreateClientJohnDoe();
 
         var createClientResponse = sut.execute(createClientDTO);
 
@@ -40,9 +40,9 @@ public class CreateClientUseCaseTest {
     @Test
     @DisplayName("Given a client with a account number already exists, when calling the created client use case, then it returns an exception of account number already registered.")
     void createClientUseCaseAccountNumberAlreadyExistsExcepetion() {
-        clientRepository.save(ClientDataTest.basicCreateClientDTO());
+        clientRepository.save(ClientDataTest.basicCreateClientJohnDoe());
 
-        var createClientDTO = ClientDataTest.basicCreateClientDTO();
+        var createClientDTO = ClientDataTest.basicCreateClientJohnDoe();
 
         assertThrows(AccountNumberAlreadyExistsExcepetion.class, () -> sut.execute(createClientDTO));
     }
