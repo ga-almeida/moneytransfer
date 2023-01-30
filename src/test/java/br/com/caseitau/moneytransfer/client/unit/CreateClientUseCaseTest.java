@@ -1,6 +1,6 @@
-package br.com.caseitau.moneytransfer.client.unit.CreateClientUseCase;
+package br.com.caseitau.moneytransfer.client.unit;
 
-import br.com.caseitau.moneytransfer.client.dataTest.CreateClientDataTest;
+import br.com.caseitau.moneytransfer.client.dataTest.ClientDataTest;
 import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
 import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepositoryInMemory;
 import br.com.caseitau.moneytransfer.client.exception.AccountNumberAlreadyExistsExcepetion;
@@ -9,9 +9,6 @@ import br.com.caseitau.moneytransfer.core.BaseUnitTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,7 +26,7 @@ public class CreateClientUseCaseTest {
     @Test
     @DisplayName("Given a valid client, when calling the created client use case, then it returns a registered client.")
     void createClientUseCaseSuccess() {
-        var createClientDTO = CreateClientDataTest.basicCreateClientDTO();
+        var createClientDTO = ClientDataTest.basicCreateClientDTO();
 
         var createClientResponse = sut.execute(createClientDTO);
 
@@ -43,9 +40,9 @@ public class CreateClientUseCaseTest {
     @Test
     @DisplayName("Given a client with a account number already exists, when calling the created client use case, then it returns an exception of account number already registered.")
     void createClientUseCaseAccountNumberAlreadyExistsExcepetion() {
-        clientRepository.save(CreateClientDataTest.basicCreateClientDTO());
+        clientRepository.save(ClientDataTest.basicCreateClientDTO());
 
-        var createClientDTO = CreateClientDataTest.basicCreateClientDTO();
+        var createClientDTO = ClientDataTest.basicCreateClientDTO();
 
         assertThrows(AccountNumberAlreadyExistsExcepetion.class, () -> sut.execute(createClientDTO));
     }

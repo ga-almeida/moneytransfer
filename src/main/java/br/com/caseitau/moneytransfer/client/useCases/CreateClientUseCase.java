@@ -1,10 +1,9 @@
 package br.com.caseitau.moneytransfer.client.useCases;
 
-import br.com.caseitau.moneytransfer.client.controller.createClient.CreateClientResponse;
+import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
 import br.com.caseitau.moneytransfer.client.dto.CreateClientDTO;
 import br.com.caseitau.moneytransfer.client.exception.AccountNumberAlreadyExistsExcepetion;
-import br.com.caseitau.moneytransfer.client.mapper.CreateClientMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +17,7 @@ public class CreateClientUseCase {
     }
 
     @Transactional
-    public CreateClientResponse execute(CreateClientDTO createClientDTO) {
+    public ClientEntity execute(CreateClientDTO createClientDTO) {
         var clientExists = clientRepository.findClientByAccountNumber(createClientDTO.getAccountNumber());
         if (clientExists) {
             throw new AccountNumberAlreadyExistsExcepetion();
@@ -26,6 +25,6 @@ public class CreateClientUseCase {
 
         var clientPersist = clientRepository.save(createClientDTO);
 
-        return CreateClientMapper.dtoFromResponse(clientPersist);
+        return clientPersist;
     }
 }

@@ -1,7 +1,6 @@
 package br.com.caseitau.moneytransfer.client.integration;
 
-import br.com.caseitau.moneytransfer.client.dataTest.CreateClientDataTest;
-import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
+import br.com.caseitau.moneytransfer.client.dataTest.ClientDataTest;
 import br.com.caseitau.moneytransfer.client.useCases.CreateClientUseCase;
 import br.com.caseitau.moneytransfer.core.BaseIntegrationTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,17 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import java.math.BigDecimal;
 
-import static org.hamcrest.Matchers.instanceOf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -47,7 +41,7 @@ public class CreateClientIntegrationTest {
 
         var resultURL = mockMvc.perform(post("/v1/client")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(createClientMapper.writeValueAsString(CreateClientDataTest.basicCreateClientDTO())))
+                        .content(createClientMapper.writeValueAsString(ClientDataTest.basicCreateClientDTO())))
                 .andExpect(request().asyncStarted())
 //                .andExpect(request().asyncResult(instanceOf(ResponseEntity.class)))
                 .andReturn();

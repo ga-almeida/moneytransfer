@@ -9,15 +9,11 @@ public class CreateClientDTO {
     private String name;
     private String accountNumber;
     private BigDecimal accountBalance;
-
     private ZonedDateTime createdAt;
+    private ZonedDateTime updateAt;
 
-    private CreateClientDTO(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt) {
-        this.id = id;
-        this.name = name;
-        this.accountNumber = accountNumber;
-        this.accountBalance = accountBalance;
-        this.createdAt = createdAt;
+    public static Builder builder() {
+        return new Builder();
     }
 
     public UUID getId() {
@@ -40,16 +36,25 @@ public class CreateClientDTO {
         return createdAt;
     }
 
-    public static Builder builder() {
-        return new Builder();
+    public ZonedDateTime getUpdateAt() {
+        return updateAt;
     }
 
+    private CreateClientDTO(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt, ZonedDateTime updateAt) {
+        this.id = id;
+        this.name = name;
+        this.accountNumber = accountNumber;
+        this.accountBalance = accountBalance;
+        this.createdAt = createdAt;
+        this.updateAt = updateAt;
+    }
     public static final class Builder {
         private UUID id;
         private String name;
         private String accountNumber;
         private BigDecimal accountBalance;
         private ZonedDateTime createdAt;
+        private ZonedDateTime updateAt;
 
         private Builder() {
         }
@@ -79,8 +84,13 @@ public class CreateClientDTO {
             return this;
         }
 
+        public Builder updateAt(ZonedDateTime updateAt) {
+            this.updateAt = updateAt;
+            return this;
+        }
+
         public CreateClientDTO build() {
-            return new CreateClientDTO(id, name, accountNumber, accountBalance, createdAt);
+            return new CreateClientDTO(id, name, accountNumber, accountBalance, createdAt, updateAt);
         }
     }
 }

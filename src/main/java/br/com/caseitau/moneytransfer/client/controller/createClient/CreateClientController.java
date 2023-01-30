@@ -1,6 +1,8 @@
 package br.com.caseitau.moneytransfer.client.controller.createClient;
 
 import br.com.caseitau.moneytransfer.client.controller.ResponseEntityTypes;
+import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
+import br.com.caseitau.moneytransfer.client.dto.CreateClientDTO;
 import br.com.caseitau.moneytransfer.client.useCases.CreateClientUseCase;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,7 @@ public class CreateClientController {
     }
 
     @PostMapping
-    public CompletableFuture<ResponseEntity<CreateClientResponse>> createClient(
+    public CompletableFuture<ResponseEntity<ClientEntity>> createClient(
             @RequestBody @Valid CreateClientRequest createClientRequest) {
         return supplyAsync(() -> createClientUseCase.execute(requestFromDto(createClientRequest)), controllersExecutor)
                 .thenApply(ResponseEntityTypes::created);
