@@ -1,8 +1,11 @@
 package br.com.caseitau.moneytransfer.client.mapper;
 
+import br.com.caseitau.moneytransfer.client.controller.createClient.CreateClientRequest;
 import br.com.caseitau.moneytransfer.client.controller.createClient.CreateClientResponse;
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 import br.com.caseitau.moneytransfer.client.dto.CreateClientDTO;
+
+import java.math.BigDecimal;
 
 public final class CreateClientMapper {
 
@@ -31,6 +34,14 @@ public final class CreateClientMapper {
                 .accountNumber(clientEntity.getAccountNumber())
                 .accountBalance(clientEntity.getAccountBalance())
                 .createdAt(clientEntity.getCreatedAt())
+                .build();
+    }
+
+    public static CreateClientDTO requestFromDto(CreateClientRequest createClientRequest) {
+        return CreateClientDTO.builder()
+                .name(createClientRequest.getName())
+                .accountNumber(createClientRequest.getAccountNumber())
+                .accountBalance(createClientRequest.getAccountBalance())
                 .build();
     }
 }

@@ -21,7 +21,7 @@ public class ClientRepositoryInMemory implements ClientRepository {
                 .id(UUID.randomUUID())
                 .name(createClientDTO.getName())
                 .accountNumber(createClientDTO.getAccountNumber())
-                .accountBalance(BigDecimal.ZERO)
+                .accountBalance(createClientDTO.getAccountBalance())
                 .createdAt(ZonedDateTime.now())
                 .build();
 

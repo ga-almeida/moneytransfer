@@ -6,6 +6,7 @@ import br.com.caseitau.moneytransfer.core.BaseIntegrationTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -41,10 +42,11 @@ public class CreateClientIntegrationTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(createClientMapper.writeValueAsString(CreateClientDataTest.basicCreateClientDTO()))
                 )
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").isNotEmpty())
                 .andExpect(jsonPath("$.name").value("JOHN DOE"))
                 .andExpect(jsonPath("$.accountNumber").value("123456"))
-                .andExpect(jsonPath("$.accountBalance").value(BigDecimal.ZERO));
+                .andExpect(jsonPath("$.accountBalance").value(BigDecimal.ZERO))
+                .andExpect(jsonPath("$.createdAt").isNotEmpty());
     }
 }
