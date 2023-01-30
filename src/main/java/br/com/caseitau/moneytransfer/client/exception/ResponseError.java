@@ -9,6 +9,14 @@ public class ResponseError {
         this.message = message;
     }
 
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
     public static Builder builder() {
         return new Builder();
     }

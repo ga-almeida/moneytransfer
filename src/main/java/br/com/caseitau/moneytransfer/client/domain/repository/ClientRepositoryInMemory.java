@@ -1,11 +1,9 @@
-package br.com.caseitau.moneytransfer.client.repository;
+package br.com.caseitau.moneytransfer.client.domain.repository;
 
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
-import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
 import br.com.caseitau.moneytransfer.client.dto.CreateClientDTO;
 import br.com.caseitau.moneytransfer.client.mapper.CreateClientMapper;
 
-import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;

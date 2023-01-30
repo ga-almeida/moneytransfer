@@ -1,17 +1,13 @@
 server:
-  port: 8082
+  port: 8080
   servlet:
     context-path: /v1
 
 spring:
   profiles:
-    active: test
+    active: dev
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:moneytransfer;DB_CLOSE_DELAY-1
-    username: sa
-    password: sa
+    url: jdbc:h2:mem:moneytransfer
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: create
