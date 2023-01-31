@@ -27,7 +27,7 @@ public class CreateClientController {
     }
 
     @PostMapping
-    public CompletableFuture<ResponseEntity<ClientEntity>> createClient(
+    public CompletableFuture<ResponseEntity<CreateClientResponse>> createClient(
             @RequestBody @Valid CreateClientRequest createClientRequest) {
         return supplyAsync(() -> createClientUseCase.execute(createClientRequest), controllersExecutor)
                 .thenApply(ResponseEntityTypes::created);

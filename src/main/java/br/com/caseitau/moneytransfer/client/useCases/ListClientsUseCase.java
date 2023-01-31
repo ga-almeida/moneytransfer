@@ -1,10 +1,9 @@
 package br.com.caseitau.moneytransfer.client.useCases;
 
-import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
+import br.com.caseitau.moneytransfer.client.controller.listClients.ListClientsResponse;
 import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
+import br.com.caseitau.moneytransfer.client.mapper.ClientMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ListClientsUseCase {
@@ -15,7 +14,7 @@ public class ListClientsUseCase {
         this.clientRepository = clientRepository;
     }
 
-    public List<ClientEntity> execute() {
-        return clientRepository.findAll();
+    public ListClientsResponse execute() {
+        return ClientMapper.clientEntityListFromListClientsResponse(clientRepository.findAll());
     }
 }
