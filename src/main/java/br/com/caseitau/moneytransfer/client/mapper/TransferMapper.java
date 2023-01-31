@@ -4,8 +4,12 @@ import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 import br.com.caseitau.moneytransfer.client.domain.entity.TransferEntity;
 import br.com.caseitau.moneytransfer.client.domain.model.StatusEnum;
 import br.com.caseitau.moneytransfer.client.dto.CreateTransferResponse;
+import br.com.caseitau.moneytransfer.client.dto.ListTransfersByClientResponse;
+import br.com.caseitau.moneytransfer.client.dto.TransferByClientDTO;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public final class TransferMapper {
 
@@ -28,6 +32,25 @@ public final class TransferMapper {
                 .value(transferEntity.getValue())
                 .createdAt(transferEntity.getCreatedAt())
                 .status(transferEntity.getStatus())
+                .build();
+    }
+
+    public static ListTransfersByClientResponse transfersEntityFromListTransfersByClientResponse(
+            List<TransferEntity> transfers, String accountNumber, String name
+    ) {
+        var transfersByClient = transfers.stream()
+                .map(t -> TransferByClientDTO.builder()
+                        .fromClientAccountNumber(t.getFromClient().getAccountNumber())
+                        .value(t.getValue())
+                        .status(t.getStatus())
+                        .createdAt(t.getCreatedAt())
+                        .build())
+                .collect(Collectors.toList());
+
+        return ListTransfersByClientResponse.builder()
+                .name(name)
+                .accountNumber(accountNumber)
+                .transfers(transfersByClient)
                 .build();
     }
 }

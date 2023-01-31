@@ -8,7 +8,7 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "transfers")
 public class TransferEntity {
 
     @Id

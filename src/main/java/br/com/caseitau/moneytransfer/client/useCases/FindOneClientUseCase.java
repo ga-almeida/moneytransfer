@@ -1,7 +1,7 @@
 package br.com.caseitau.moneytransfer.client.useCases;
 
 import br.com.caseitau.moneytransfer.client.dto.FindOneClientResponse;
-import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
+import br.com.caseitau.moneytransfer.client.domain.repository.IClientService;
 import br.com.caseitau.moneytransfer.client.exception.ClientNotFoundException;
 import br.com.caseitau.moneytransfer.client.mapper.ClientMapper;
 import org.springframework.stereotype.Service;
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class FindOneClientUseCase {
 
-    private final ClientRepository clientRepository;
+    private final IClientService clientService;
 
-    public FindOneClientUseCase(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
+    public FindOneClientUseCase(IClientService clientService) {
+        this.clientService = clientService;
     }
 
     public FindOneClientResponse execute(String accountNumber) {
-        var clientEntity = clientRepository.findOne(accountNumber).orElseThrow(ClientNotFoundException::new);
+        var clientEntity = clientService.findOneByAccountNumber(accountNumber).orElseThrow(ClientNotFoundException::new);
         return ClientMapper.clientEntityFromFindOneClientResponse(clientEntity);
     }
 }

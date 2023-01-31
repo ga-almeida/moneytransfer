@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public final class TransferConstants {
-
     public static final String FROM_CLIENT_ACCOUNT_NUMBER = "123456";
     public static final UUID FROM_CLIENT_ID = UUID.fromString("29c04915-f582-4a9e-8def-4836c9abb862");
     public static final String ORIGIN_CLIENT_ACCOUNT_NUMBER = "654321";

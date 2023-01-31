@@ -1,7 +1,7 @@
 package br.com.caseitau.moneytransfer.client.unit;
 
 import br.com.caseitau.moneytransfer.client.dataTest.ClientDataTest;
-import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
+import br.com.caseitau.moneytransfer.client.domain.repository.IClientService;
 import br.com.caseitau.moneytransfer.client.useCases.ListClientsUseCase;
 import br.com.caseitau.moneytransfer.core.BaseUnitTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,17 +17,17 @@ public class ListClientsUseCaseTest {
     private ListClientsUseCase sut;
 
     @Mock
-    private ClientRepository clientRepository;
+    private IClientService clientService;
 
     @BeforeEach
     void setupEach() {
-        sut = new ListClientsUseCase(clientRepository);
+        sut = new ListClientsUseCase(clientService);
     }
 
     @Test
     @DisplayName("When calling list clients use case, then it returns all clients.")
     void listClientsUseCaseSuccess() {
-        when(clientRepository.findAll()).thenReturn(ClientDataTest.basicCreateFiveClients());
+        when(clientService.findAll()).thenReturn(ClientDataTest.basicCreateFiveClients());
         var listClientsResponse = sut.execute();
 
         assertEquals(5, listClientsResponse.getClients().size());
