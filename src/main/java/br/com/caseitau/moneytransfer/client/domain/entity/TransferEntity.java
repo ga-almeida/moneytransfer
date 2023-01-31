@@ -1,6 +1,5 @@
 package br.com.caseitau.moneytransfer.client.domain.entity;
 
-import br.com.caseitau.moneytransfer.client.dto.ClientDTO;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -17,11 +16,11 @@ public class TransferEntity {
 
     @ManyToOne
     @JoinColumn(name = "origin_client_id")
-    private ClientDTO originClient;
+    private ClientEntity originClient;
 
     @ManyToOne
     @JoinColumn(name = "from_client_id")
-    private ClientDTO fromClient;
+    private ClientEntity fromClient;
 
     @Column
     private BigDecimal balance;
@@ -32,7 +31,7 @@ public class TransferEntity {
     @Column
     private ZonedDateTime updatedAt;
 
-    private TransferEntity(UUID id, ClientDTO originClient, ClientDTO fromClient, BigDecimal balance, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
+    private TransferEntity(UUID id, ClientEntity originClient, ClientEntity fromClient, BigDecimal balance, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
         this.id = id;
         this.originClient = originClient;
         this.fromClient = fromClient;
@@ -55,11 +54,11 @@ public class TransferEntity {
         return id;
     }
 
-    public ClientDTO getOriginClient() {
+    public ClientEntity getOriginClient() {
         return originClient;
     }
 
-    public ClientDTO getFromClient() {
+    public ClientEntity getFromClient() {
         return fromClient;
     }
 
@@ -81,8 +80,8 @@ public class TransferEntity {
 
     public static final class Builder {
         private UUID id;
-        private ClientDTO originClient;
-        private ClientDTO fromClient;
+        private ClientEntity originClient;
+        private ClientEntity fromClient;
         private BigDecimal balance;
         private ZonedDateTime createdAt;
         private ZonedDateTime updatedAt;
@@ -95,12 +94,12 @@ public class TransferEntity {
             return this;
         }
 
-        public Builder originClient(ClientDTO originClient) {
+        public Builder originClient(ClientEntity originClient) {
             this.originClient = originClient;
             return this;
         }
 
-        public Builder fromClient(ClientDTO fromClient) {
+        public Builder fromClient(ClientEntity fromClient) {
             this.fromClient = fromClient;
             return this;
         }

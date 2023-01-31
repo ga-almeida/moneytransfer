@@ -5,12 +5,14 @@ import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 import br.com.caseitau.moneytransfer.client.useCases.CreateClientUseCase;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
-import static br.com.caseitau.moneytransfer.client.mapper.CreateClientMapper.requestFromDto;
 import static java.util.concurrent.CompletableFuture.supplyAsync;
 
 @RestController
@@ -27,7 +29,7 @@ public class CreateClientController {
     @PostMapping
     public CompletableFuture<ResponseEntity<ClientEntity>> createClient(
             @RequestBody @Valid CreateClientRequest createClientRequest) {
-        return supplyAsync(() -> createClientUseCase.execute(requestFromDto(createClientRequest)), controllersExecutor)
+        return supplyAsync(() -> createClientUseCase.execute(createClientRequest), controllersExecutor)
                 .thenApply(ResponseEntityTypes::created);
     }
 }

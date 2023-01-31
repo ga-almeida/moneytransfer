@@ -1,16 +1,15 @@
-package br.com.caseitau.moneytransfer.client.dto;
+package br.com.caseitau.moneytransfer.client.controller.createClient;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-public class ClientDTO {
+public class CreateClientResponse {
     private UUID id;
     private String name;
     private String accountNumber;
     private BigDecimal accountBalance;
     private ZonedDateTime createdAt;
-    private ZonedDateTime updateAt;
 
     public static Builder builder() {
         return new Builder();
@@ -36,17 +35,12 @@ public class ClientDTO {
         return createdAt;
     }
 
-    public ZonedDateTime getUpdateAt() {
-        return updateAt;
-    }
-
-    private ClientDTO(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt, ZonedDateTime updateAt) {
+    private CreateClientResponse(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
         this.createdAt = createdAt;
-        this.updateAt = updateAt;
     }
     public static final class Builder {
         private UUID id;
@@ -54,7 +48,6 @@ public class ClientDTO {
         private String accountNumber;
         private BigDecimal accountBalance;
         private ZonedDateTime createdAt;
-        private ZonedDateTime updateAt;
 
         private Builder() {
         }
@@ -84,13 +77,8 @@ public class ClientDTO {
             return this;
         }
 
-        public Builder updateAt(ZonedDateTime updateAt) {
-            this.updateAt = updateAt;
-            return this;
-        }
-
-        public ClientDTO build() {
-            return new ClientDTO(id, name, accountNumber, accountBalance, createdAt, updateAt);
+        public CreateClientResponse build() {
+            return new CreateClientResponse(id, name, accountNumber, accountBalance, createdAt);
         }
     }
 }

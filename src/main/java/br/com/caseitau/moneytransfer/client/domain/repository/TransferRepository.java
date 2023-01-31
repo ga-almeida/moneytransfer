@@ -1,8 +1,11 @@
 package br.com.caseitau.moneytransfer.client.domain.repository;
 
-import br.com.caseitau.moneytransfer.client.domain.entity.TransferEntity;
-import br.com.caseitau.moneytransfer.client.dto.TransferDTO;
+import br.com.caseitau.moneytransfer.client.controller.createClient.CreateClientResponse;
+import br.com.caseitau.moneytransfer.client.controller.createTransfer.CreateTransferRequest;
+import br.com.caseitau.moneytransfer.client.controller.createTransfer.CreateTransferResponse;
+
+import java.util.Optional;
 
 public interface TransferRepository {
-    TransferEntity save(TransferDTO transferDTO);
+    Optional<CreateTransferResponse> save(CreateTransferRequest createTransferRequest);
 }
