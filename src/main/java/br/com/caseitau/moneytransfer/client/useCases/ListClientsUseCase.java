@@ -1,6 +1,6 @@
 package br.com.caseitau.moneytransfer.client.useCases;
 
-import br.com.caseitau.moneytransfer.client.controller.listClients.ListClientsResponse;
+import br.com.caseitau.moneytransfer.client.dto.ListClientsResponse;
 import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
 import br.com.caseitau.moneytransfer.client.mapper.ClientMapper;
 import org.springframework.stereotype.Service;

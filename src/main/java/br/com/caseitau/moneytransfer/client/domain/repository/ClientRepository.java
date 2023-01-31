@@ -1,6 +1,6 @@
 package br.com.caseitau.moneytransfer.client.domain.repository;
 
-import br.com.caseitau.moneytransfer.client.controller.createClient.CreateClientRequest;
+import br.com.caseitau.moneytransfer.client.dto.CreateClientRequest;
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 
 import java.util.List;

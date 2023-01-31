@@ -1,6 +1,6 @@
 package br.com.caseitau.moneytransfer.client.dataTest;
 
-import br.com.caseitau.moneytransfer.client.controller.createClient.CreateClientRequest;
+import br.com.caseitau.moneytransfer.client.dto.CreateClientRequest;
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 import br.com.caseitau.moneytransfer.client.mapper.ClientMapper;
 
@@ -64,6 +64,17 @@ public final class ClientDataTest {
                 .name(NAME_JOHN_DOE)
                 .accountNumber(ACCOUNT_NUMBER_JOHN_DOE)
                 .accountBalance(ACCOUNT_BALANCE_JOHN_DOE)
+                .createdAt(ZonedDateTime.now())
+                .updatedAt(ZonedDateTime.now())
+                .build());
+    }
+
+    public static Optional<ClientEntity> basicFindOneClientEntityJaneDoe() {
+        return Optional.of(ClientEntity.builder()
+                .id(UUID.randomUUID())
+                .name(NAME_JANE_DOE)
+                .accountNumber(ACCOUNT_NUMBER_JANE_DOE)
+                .accountBalance(ACCOUNT_BALANCE_JANE_DOE)
                 .createdAt(ZonedDateTime.now())
                 .updatedAt(ZonedDateTime.now())
                 .build());

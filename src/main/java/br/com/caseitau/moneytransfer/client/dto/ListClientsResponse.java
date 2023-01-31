@@ -1,4 +1,4 @@
-package br.com.caseitau.moneytransfer.client.controller.listClients;
+package br.com.caseitau.moneytransfer.client.dto;
 
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 

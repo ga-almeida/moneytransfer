@@ -1,6 +1,6 @@
 package br.com.caseitau.moneytransfer.client.useCases;
 
-import br.com.caseitau.moneytransfer.client.controller.findOneClient.FindOneClientResponse;
+import br.com.caseitau.moneytransfer.client.dto.FindOneClientResponse;
 import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
 import br.com.caseitau.moneytransfer.client.exception.ClientNotFoundException;
 import br.com.caseitau.moneytransfer.client.mapper.ClientMapper;

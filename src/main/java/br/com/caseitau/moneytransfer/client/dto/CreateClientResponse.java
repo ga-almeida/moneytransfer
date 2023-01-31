@@ -1,17 +1,15 @@
-package br.com.caseitau.moneytransfer.client.controller.findOneClient;
+package br.com.caseitau.moneytransfer.client.dto;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-public class FindOneClientResponse {
+public class CreateClientResponse {
     private UUID id;
     private String name;
     private String accountNumber;
     private BigDecimal accountBalance;
     private ZonedDateTime createdAt;
-
-    private ZonedDateTime updatedAt;
 
     public static Builder builder() {
         return new Builder();
@@ -37,17 +35,12 @@ public class FindOneClientResponse {
         return createdAt;
     }
 
-    public ZonedDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    private FindOneClientResponse(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
+    private CreateClientResponse(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
         this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
     public static final class Builder {
         private UUID id;
@@ -55,7 +48,6 @@ public class FindOneClientResponse {
         private String accountNumber;
         private BigDecimal accountBalance;
         private ZonedDateTime createdAt;
-        private ZonedDateTime updatedAt;
 
         private Builder() {
         }
@@ -85,13 +77,8 @@ public class FindOneClientResponse {
             return this;
         }
 
-        public Builder updatedAt(ZonedDateTime updatedAt) {
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-        public FindOneClientResponse build() {
-            return new FindOneClientResponse(id, name, accountNumber, accountBalance, createdAt, updatedAt);
+        public CreateClientResponse build() {
+            return new CreateClientResponse(id, name, accountNumber, accountBalance, createdAt);
         }
     }
 }

@@ -1,15 +1,16 @@
-package br.com.caseitau.moneytransfer.client.controller.createClient;
+package br.com.caseitau.moneytransfer.client.dto;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-public class CreateClientResponse {
+public class FindOneClientResponse {
     private UUID id;
     private String name;
     private String accountNumber;
     private BigDecimal accountBalance;
     private ZonedDateTime createdAt;
+    private ZonedDateTime updatedAt;
 
     public static Builder builder() {
         return new Builder();
@@ -35,12 +36,17 @@ public class CreateClientResponse {
         return createdAt;
     }
 
-    private CreateClientResponse(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt) {
+    public ZonedDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    private FindOneClientResponse(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
     public static final class Builder {
         private UUID id;
@@ -48,6 +54,7 @@ public class CreateClientResponse {
         private String accountNumber;
         private BigDecimal accountBalance;
         private ZonedDateTime createdAt;
+        private ZonedDateTime updatedAt;
 
         private Builder() {
         }
@@ -77,8 +84,13 @@ public class CreateClientResponse {
             return this;
         }
 
-        public CreateClientResponse build() {
-            return new CreateClientResponse(id, name, accountNumber, accountBalance, createdAt);
+        public Builder updatedAt(ZonedDateTime updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        public FindOneClientResponse build() {
+            return new FindOneClientResponse(id, name, accountNumber, accountBalance, createdAt, updatedAt);
         }
     }
 }

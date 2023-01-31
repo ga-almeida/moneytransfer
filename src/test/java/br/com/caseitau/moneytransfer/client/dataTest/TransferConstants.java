@@ -5,7 +5,9 @@ import java.util.UUID;
 
 public final class TransferConstants {
 
-    public static final UUID FROM_CLIENT_ID = UUID.fromString("b3527d1e-8edb-4fc1-9b1a-4e609ec27fba");
-    public static final UUID ORIGIN_CLIENT_ID = UUID.fromString("2641d24e-f915-4dc9-a04a-6f50ee916da7");
-    public static final BigDecimal BALANCE = BigDecimal.valueOf(1000);
+    public static final String FROM_CLIENT_ACCOUNT_NUMBER = "123456";
+    public static final UUID FROM_CLIENT_ID = UUID.fromString("29c04915-f582-4a9e-8def-4836c9abb862");
+    public static final String ORIGIN_CLIENT_ACCOUNT_NUMBER = "654321";
+    public static final UUID ORIGIN_CLIENT_ID = UUID.fromString("041dc2f1-f13a-4e0d-8d70-93897cfb2c24");
+    public static final BigDecimal BALANCE = BigDecimal.valueOf(50);
 }

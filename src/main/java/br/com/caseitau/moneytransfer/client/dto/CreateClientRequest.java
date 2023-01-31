@@ -1,4 +1,4 @@
-package br.com.caseitau.moneytransfer.client.controller.createClient;
+package br.com.caseitau.moneytransfer.client.dto;
 
 import jakarta.validation.constraints.NotNull;
 

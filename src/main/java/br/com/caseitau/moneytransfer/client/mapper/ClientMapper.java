@@ -1,9 +1,9 @@
 package br.com.caseitau.moneytransfer.client.mapper;
 
-import br.com.caseitau.moneytransfer.client.controller.createClient.CreateClientRequest;
-import br.com.caseitau.moneytransfer.client.controller.createClient.CreateClientResponse;
-import br.com.caseitau.moneytransfer.client.controller.findOneClient.FindOneClientResponse;
-import br.com.caseitau.moneytransfer.client.controller.listClients.ListClientsResponse;
+import br.com.caseitau.moneytransfer.client.dto.CreateClientRequest;
+import br.com.caseitau.moneytransfer.client.dto.CreateClientResponse;
+import br.com.caseitau.moneytransfer.client.dto.FindOneClientResponse;
+import br.com.caseitau.moneytransfer.client.dto.ListClientsResponse;
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 
 import java.util.List;

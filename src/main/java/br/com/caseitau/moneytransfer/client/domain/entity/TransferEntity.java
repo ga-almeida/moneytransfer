@@ -1,5 +1,6 @@
 package br.com.caseitau.moneytransfer.client.domain.entity;
 
+import br.com.caseitau.moneytransfer.client.domain.model.StatusEnum;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -23,7 +24,10 @@ public class TransferEntity {
     private ClientEntity fromClient;
 
     @Column
-    private BigDecimal balance;
+    private BigDecimal value;
+
+    @Enumerated(EnumType.ORDINAL)
+    private StatusEnum status;
 
     @Column
     private ZonedDateTime createdAt;
@@ -31,13 +35,21 @@ public class TransferEntity {
     @Column
     private ZonedDateTime updatedAt;
 
-    private TransferEntity(UUID id, ClientEntity originClient, ClientEntity fromClient, BigDecimal balance, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
+    public TransferEntity() {
+    }
+
+    private TransferEntity(UUID id, ClientEntity originClient, ClientEntity fromClient, BigDecimal value, StatusEnum status, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
         this.id = id;
         this.originClient = originClient;
         this.fromClient = fromClient;
-        this.balance = balance;
+        this.value = value;
+        this.status = status;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     @PrePersist
@@ -62,8 +74,12 @@ public class TransferEntity {
         return fromClient;
     }
 
-    public BigDecimal getBalance() {
-        return balance;
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
     }
 
     public ZonedDateTime getCreatedAt() {
@@ -74,15 +90,12 @@ public class TransferEntity {
         return updatedAt;
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     public static final class Builder {
         private UUID id;
         private ClientEntity originClient;
         private ClientEntity fromClient;
-        private BigDecimal balance;
+        private BigDecimal value;
+        private StatusEnum status;
         private ZonedDateTime createdAt;
         private ZonedDateTime updatedAt;
 
@@ -104,8 +117,13 @@ public class TransferEntity {
             return this;
         }
 
-        public Builder balance(BigDecimal balance) {
-            this.balance = balance;
+        public Builder value(BigDecimal value) {
+            this.value = value;
+            return this;
+        }
+
+        public Builder status(StatusEnum status) {
+            this.status = status;
             return this;
         }
 
@@ -120,7 +138,7 @@ public class TransferEntity {
         }
 
         public TransferEntity build() {
-            return new TransferEntity(id, originClient, fromClient, balance, createdAt, updatedAt);
+            return new TransferEntity(id, originClient, fromClient, value, status, createdAt, updatedAt);
         }
     }
 }

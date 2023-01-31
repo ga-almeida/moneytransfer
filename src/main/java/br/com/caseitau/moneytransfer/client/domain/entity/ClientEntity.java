@@ -28,6 +28,9 @@ public class ClientEntity {
     @Column
     private ZonedDateTime updatedAt;
 
+    public ClientEntity() {
+    }
+
     private ClientEntity(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
         this.id = id;
         this.name = name;

@@ -1,7 +1,7 @@
 package br.com.caseitau.moneytransfer.client.useCases;
 
-import br.com.caseitau.moneytransfer.client.controller.createClient.CreateClientRequest;
-import br.com.caseitau.moneytransfer.client.controller.createClient.CreateClientResponse;
+import br.com.caseitau.moneytransfer.client.dto.CreateClientRequest;
+import br.com.caseitau.moneytransfer.client.dto.CreateClientResponse;
 import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
 import br.com.caseitau.moneytransfer.client.exception.AccountNumberAlreadyExistsExcepetion;
 import br.com.caseitau.moneytransfer.client.mapper.ClientMapper;

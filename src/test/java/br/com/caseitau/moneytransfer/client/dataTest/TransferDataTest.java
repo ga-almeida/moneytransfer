@@ -1,11 +1,10 @@
 package br.com.caseitau.moneytransfer.client.dataTest;
 
-import br.com.caseitau.moneytransfer.client.controller.createTransfer.CreateTransferRequest;
-import br.com.caseitau.moneytransfer.client.controller.createTransfer.CreateTransferResponse;
+import br.com.caseitau.moneytransfer.client.domain.model.StatusEnum;
+import br.com.caseitau.moneytransfer.client.dto.CreateTransferRequest;
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 import br.com.caseitau.moneytransfer.client.domain.entity.TransferEntity;
 
-import javax.swing.text.html.Option;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Optional;
@@ -19,20 +18,31 @@ public final class TransferDataTest {
                         .id(UUID.randomUUID())
                 .fromClient(ClientEntity.builder()
                         .id(FROM_CLIENT_ID)
+                        .accountNumber(FROM_CLIENT_ACCOUNT_NUMBER)
                         .build())
                 .originClient(ClientEntity.builder()
                         .id(ORIGIN_CLIENT_ID)
+                        .accountNumber(ORIGIN_CLIENT_ACCOUNT_NUMBER)
                         .build())
-                .balance(BALANCE)
+                .value(BALANCE)
+                .status(StatusEnum.SUCCESS)
                 .createdAt(ZonedDateTime.now())
                 .build());
     }
 
     public static CreateTransferRequest basicCreateTransferRequest() {
         return CreateTransferRequest.builder()
-                .fromClientId(FROM_CLIENT_ID)
-                .originClientId(ORIGIN_CLIENT_ID)
-                .balance(BALANCE)
+                .fromClientAccountNumber(FROM_CLIENT_ACCOUNT_NUMBER)
+                .originClientAccountNumber(ORIGIN_CLIENT_ACCOUNT_NUMBER)
+                .value(BALANCE)
+                .build();
+    }
+
+    public static CreateTransferRequest basicCreateTransferRequestWithValueHigherAccount() {
+        return CreateTransferRequest.builder()
+                .fromClientAccountNumber(FROM_CLIENT_ACCOUNT_NUMBER)
+                .originClientAccountNumber(ORIGIN_CLIENT_ACCOUNT_NUMBER)
+                .value(BigDecimal.valueOf(101))
                 .build();
     }
 }
