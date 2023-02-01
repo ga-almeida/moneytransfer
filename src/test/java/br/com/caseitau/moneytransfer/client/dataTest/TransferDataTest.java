@@ -57,4 +57,30 @@ public final class TransferDataTest {
 
         return transfer;
     }
+
+    public static List<TransferEntity> listTransfersbyClientCustom(UUID originClientId, UUID fromClientId) {
+        List<TransferEntity> transfer = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            var createdAt = OffsetDateTime.now().plusDays(i);
+            transfer.add(basicCreateTransferEntityDateDifferent(originClientId, fromClientId, createdAt));
+        }
+
+        return transfer;
+    }
+
+    public static TransferEntity basicCreateTransferEntityDateDifferent(UUID originClientId, UUID fromClientId, OffsetDateTime createdAt) {
+        return TransferEntity.builder()
+                .fromClient(ClientEntity.builder()
+                        .id(fromClientId)
+                        .accountNumber(FROM_CLIENT_ACCOUNT_NUMBER)
+                        .build())
+                .originClient(ClientEntity.builder()
+                        .id(originClientId)
+                        .accountNumber(ORIGIN_CLIENT_ACCOUNT_NUMBER)
+                        .build())
+                .value(BALANCE)
+                .status(StatusEnum.SUCCESS)
+                .createdAt(createdAt)
+                .build();
+    }
 }

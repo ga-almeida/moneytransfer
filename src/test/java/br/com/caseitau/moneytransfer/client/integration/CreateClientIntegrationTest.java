@@ -7,9 +7,7 @@ import br.com.caseitau.moneytransfer.client.exception.ResponseError;
 import br.com.caseitau.moneytransfer.core.BaseIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -27,6 +25,10 @@ public class CreateClientIntegrationTest extends BaseIntegrationTest {
     @BeforeEach
     void setupBeforeEach() {
         mapperObject = new ObjectMapper();
+    }
+
+    @AfterEach
+    void setupAfterEach() {
         clientRepository.deleteAll();
     }
 

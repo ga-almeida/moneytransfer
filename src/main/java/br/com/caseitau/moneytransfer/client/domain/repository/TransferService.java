@@ -37,7 +37,7 @@ public class TransferService implements ITransferService {
     }
 
     @Override
-    public List<TransferEntity> findByClientId(UUID clientId) {
-        return null;
+    public List<TransferEntity> findByClientId(UUID originClientId) {
+        return transferRepository.findByOriginClientIdOrderByCreatedAtDesc(originClientId);
     }
 }

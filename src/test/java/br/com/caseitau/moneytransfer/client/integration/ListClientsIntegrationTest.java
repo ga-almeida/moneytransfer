@@ -5,6 +5,7 @@ import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
 import br.com.caseitau.moneytransfer.client.dto.ListClientsResponse;
 import br.com.caseitau.moneytransfer.core.BaseIntegrationTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,13 +24,17 @@ public class ListClientsIntegrationTest extends BaseIntegrationTest {
     @BeforeEach
     void setupBeforeEach() {
         mapperObject = new ObjectMapper();
+    }
+
+    @AfterEach
+    void setupAfterEach() {
         clientRepository.deleteAll();
     }
 
     @Test
     @DisplayName("When calling list clients controller, then it returns status code 200.")
-    void listClientsControllerOk() {
-        var sizeListClientsExpeceted = 5;
+    void listClientsControllerStatusOk() {
+        var sizeListClientsExpected = 5;
         clientRepository.saveAllAndFlush(ClientDataTest.basicCreateFiveCustomClients());
 
         var response = given()
@@ -41,6 +46,6 @@ public class ListClientsIntegrationTest extends BaseIntegrationTest {
                 .extract()
                 .as(ListClientsResponse.class);
 
-        assertEquals(sizeListClientsExpeceted, response.getClients().size());
+        assertEquals(sizeListClientsExpected, response.getClients().size());
     }
 }
