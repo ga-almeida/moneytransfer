@@ -6,6 +6,7 @@ import br.com.caseitau.moneytransfer.client.domain.model.StatusEnum;
 import br.com.caseitau.moneytransfer.client.dto.CreateTransferRequest;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public final class TransferDataTest {
                         .build())
                 .value(BALANCE)
                 .status(StatusEnum.SUCCESS)
-                .createdAt(ZonedDateTime.now())
+                .createdAt(OffsetDateTime.now())
                 .build());
     }
 
@@ -45,7 +46,7 @@ public final class TransferDataTest {
                         .build())
                 .value(BALANCE)
                 .status(StatusEnum.SUCCESS)
-                .createdAt(ZonedDateTime.now())
+                .createdAt(OffsetDateTime.now())
                 .build();
     }
 

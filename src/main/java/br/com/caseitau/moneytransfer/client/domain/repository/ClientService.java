@@ -35,6 +35,6 @@ public class ClientService implements IClientService {
 
     @Override
     public Optional<ClientEntity> findOneByAccountNumber(String accountNumber) {
-        return Optional.empty();
+        return clientRepository.findByAccountNumber(accountNumber);
     }
 }

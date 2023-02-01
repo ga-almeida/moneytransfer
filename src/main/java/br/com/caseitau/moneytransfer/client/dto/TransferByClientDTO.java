@@ -3,15 +3,16 @@ package br.com.caseitau.moneytransfer.client.dto;
 import br.com.caseitau.moneytransfer.client.domain.model.StatusEnum;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
 public class TransferByClientDTO {
     private final String fromClientAccountNumber;
     private final BigDecimal value;
     private final StatusEnum status;
-    private final ZonedDateTime createdAt;
+    private final OffsetDateTime createdAt;
 
-    private TransferByClientDTO(String fromClientAccountNumber, BigDecimal value, StatusEnum status, ZonedDateTime createdAt) {
+    private TransferByClientDTO(String fromClientAccountNumber, BigDecimal value, StatusEnum status, OffsetDateTime createdAt) {
         this.fromClientAccountNumber = fromClientAccountNumber;
         this.value = value;
         this.status = status;
@@ -34,7 +35,7 @@ public class TransferByClientDTO {
         return status;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
 
@@ -42,7 +43,7 @@ public class TransferByClientDTO {
         private String fromClientAccountNumber;
         private BigDecimal value;
         private StatusEnum status;
-        private ZonedDateTime createdAt;
+        private OffsetDateTime createdAt;
 
         private Builder() {
         }
@@ -62,7 +63,7 @@ public class TransferByClientDTO {
             return this;
         }
 
-        public Builder createdAt(ZonedDateTime createdAt) {
+        public Builder createdAt(OffsetDateTime createdAt) {
             this.createdAt = createdAt;
             return this;
         }

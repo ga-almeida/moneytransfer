@@ -4,6 +4,7 @@ import br.com.caseitau.moneytransfer.client.domain.model.StatusEnum;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -30,15 +31,15 @@ public class TransferEntity {
     private StatusEnum status;
 
     @Column
-    private ZonedDateTime createdAt;
+    private OffsetDateTime createdAt;
 
     @Column
-    private ZonedDateTime updatedAt;
+    private OffsetDateTime updatedAt;
 
     public TransferEntity() {
     }
 
-    private TransferEntity(UUID id, ClientEntity originClient, ClientEntity fromClient, BigDecimal value, StatusEnum status, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
+    private TransferEntity(UUID id, ClientEntity originClient, ClientEntity fromClient, BigDecimal value, StatusEnum status, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.originClient = originClient;
         this.fromClient = fromClient;
@@ -54,12 +55,12 @@ public class TransferEntity {
 
     @PrePersist
     protected void prePersist() {
-        createdAt = ZonedDateTime.now();
+        createdAt = OffsetDateTime.now();
     }
 
     @PreUpdate
     protected void preUpdate() {
-        updatedAt = ZonedDateTime.now();
+        updatedAt = OffsetDateTime.now();
     }
 
     public UUID getId() {
@@ -82,11 +83,11 @@ public class TransferEntity {
         return status;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public ZonedDateTime getUpdatedAt() {
+    public OffsetDateTime getUpdatedAt() {
         return updatedAt;
     }
 
@@ -96,8 +97,8 @@ public class TransferEntity {
         private ClientEntity fromClient;
         private BigDecimal value;
         private StatusEnum status;
-        private ZonedDateTime createdAt;
-        private ZonedDateTime updatedAt;
+        private OffsetDateTime createdAt;
+        private OffsetDateTime updatedAt;
 
         private Builder() {
         }
@@ -127,12 +128,12 @@ public class TransferEntity {
             return this;
         }
 
-        public Builder createdAt(ZonedDateTime createdAt) {
+        public Builder createdAt(OffsetDateTime createdAt) {
             this.createdAt = createdAt;
             return this;
         }
 
-        public Builder updatedAt(ZonedDateTime updatedAt) {
+        public Builder updatedAt(OffsetDateTime updatedAt) {
             this.updatedAt = updatedAt;
             return this;
         }

@@ -1,6 +1,7 @@
 package br.com.caseitau.moneytransfer.client.dto;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -9,7 +10,7 @@ public class CreateClientResponse {
     private String name;
     private String accountNumber;
     private BigDecimal accountBalance;
-    private ZonedDateTime createdAt;
+    private OffsetDateTime createdAt;
 
     public static Builder builder() {
         return new Builder();
@@ -31,11 +32,11 @@ public class CreateClientResponse {
         return accountBalance;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
 
-    private CreateClientResponse(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt) {
+    private CreateClientResponse(UUID id, String name, String accountNumber, BigDecimal accountBalance, OffsetDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.accountNumber = accountNumber;
@@ -47,7 +48,7 @@ public class CreateClientResponse {
         private String name;
         private String accountNumber;
         private BigDecimal accountBalance;
-        private ZonedDateTime createdAt;
+        private OffsetDateTime createdAt;
 
         private Builder() {
         }
@@ -72,7 +73,7 @@ public class CreateClientResponse {
             return this;
         }
 
-        public Builder createdAt(ZonedDateTime createdAt) {
+        public Builder createdAt(OffsetDateTime createdAt) {
             this.createdAt = createdAt;
             return this;
         }

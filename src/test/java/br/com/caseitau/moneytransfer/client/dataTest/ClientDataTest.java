@@ -5,6 +5,7 @@ import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 import br.com.caseitau.moneytransfer.client.mapper.ClientMapper;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,8 +54,8 @@ public final class ClientDataTest {
                 .name(NAME_JOHN_DOE)
                 .accountNumber(ACCOUNT_NUMBER_JOHN_DOE)
                 .accountBalance(ACCOUNT_BALANCE_JOHN_DOE)
-                .createdAt(ZonedDateTime.now())
-                .updatedAt(ZonedDateTime.now())
+                .createdAt(OffsetDateTime.now())
+                .updatedAt(OffsetDateTime.now())
                 .build();
     }
 
@@ -64,8 +65,8 @@ public final class ClientDataTest {
                 .name(NAME_JOHN_DOE)
                 .accountNumber(ACCOUNT_NUMBER_JOHN_DOE)
                 .accountBalance(ACCOUNT_BALANCE_JOHN_DOE)
-                .createdAt(ZonedDateTime.now())
-                .updatedAt(ZonedDateTime.now())
+                .createdAt(OffsetDateTime.now())
+                .updatedAt(OffsetDateTime.now())
                 .build());
     }
 
@@ -75,8 +76,8 @@ public final class ClientDataTest {
                 .name(NAME_JANE_DOE)
                 .accountNumber(ACCOUNT_NUMBER_JANE_DOE)
                 .accountBalance(ACCOUNT_BALANCE_JANE_DOE)
-                .createdAt(ZonedDateTime.now())
-                .updatedAt(ZonedDateTime.now())
+                .createdAt(OffsetDateTime.now())
+                .updatedAt(OffsetDateTime.now())
                 .build());
     }
 }

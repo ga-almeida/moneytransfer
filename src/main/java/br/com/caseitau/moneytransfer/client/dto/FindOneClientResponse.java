@@ -1,6 +1,9 @@
 package br.com.caseitau.moneytransfer.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -9,8 +12,8 @@ public class FindOneClientResponse {
     private String name;
     private String accountNumber;
     private BigDecimal accountBalance;
-    private ZonedDateTime createdAt;
-    private ZonedDateTime updatedAt;
+    private OffsetDateTime createdAt;
+    private OffsetDateTime updatedAt;
 
     public static Builder builder() {
         return new Builder();
@@ -32,15 +35,15 @@ public class FindOneClientResponse {
         return accountBalance;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public ZonedDateTime getUpdatedAt() {
+    public OffsetDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    private FindOneClientResponse(UUID id, String name, String accountNumber, BigDecimal accountBalance, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
+    private FindOneClientResponse(UUID id, String name, String accountNumber, BigDecimal accountBalance, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.accountNumber = accountNumber;
@@ -53,8 +56,8 @@ public class FindOneClientResponse {
         private String name;
         private String accountNumber;
         private BigDecimal accountBalance;
-        private ZonedDateTime createdAt;
-        private ZonedDateTime updatedAt;
+        private OffsetDateTime createdAt;
+        private OffsetDateTime updatedAt;
 
         private Builder() {
         }
@@ -79,12 +82,12 @@ public class FindOneClientResponse {
             return this;
         }
 
-        public Builder createdAt(ZonedDateTime createdAt) {
+        public Builder createdAt(OffsetDateTime createdAt) {
             this.createdAt = createdAt;
             return this;
         }
 
-        public Builder updatedAt(ZonedDateTime updatedAt) {
+        public Builder updatedAt(OffsetDateTime updatedAt) {
             this.updatedAt = updatedAt;
             return this;
         }

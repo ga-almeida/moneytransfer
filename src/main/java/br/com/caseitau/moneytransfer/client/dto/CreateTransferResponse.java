@@ -3,6 +3,7 @@ package br.com.caseitau.moneytransfer.client.dto;
 import br.com.caseitau.moneytransfer.client.domain.model.StatusEnum;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -12,9 +13,9 @@ public class CreateTransferResponse {
     private String fromClientAccountNumber;
     private BigDecimal value;
     private StatusEnum status;
-    private ZonedDateTime createdAt;
+    private OffsetDateTime createdAt;
 
-    private CreateTransferResponse(UUID id, String originClientAccountNumber, String fromClientAccountNumber, BigDecimal value, StatusEnum status, ZonedDateTime createdAt) {
+    private CreateTransferResponse(UUID id, String originClientAccountNumber, String fromClientAccountNumber, BigDecimal value, StatusEnum status, OffsetDateTime createdAt) {
         this.id = id;
         this.originClientAccountNumber = originClientAccountNumber;
         this.fromClientAccountNumber = fromClientAccountNumber;
@@ -43,7 +44,7 @@ public class CreateTransferResponse {
         return status;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
 
@@ -57,7 +58,7 @@ public class CreateTransferResponse {
         private String fromClientAccountNumber;
         private BigDecimal value;
         private StatusEnum status;
-        private ZonedDateTime createdAt;
+        private OffsetDateTime createdAt;
 
         private Builder() {
         }
@@ -87,7 +88,7 @@ public class CreateTransferResponse {
             return this;
         }
 
-        public Builder createdAt(ZonedDateTime createdAt) {
+        public Builder createdAt(OffsetDateTime createdAt) {
             this.createdAt = createdAt;
             return this;
         }
