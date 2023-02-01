@@ -1,5 +1,6 @@
 package br.com.caseitau.moneytransfer.client.useCases;
 
+import br.com.caseitau.moneytransfer.client.domain.model.StatusEnum;
 import br.com.caseitau.moneytransfer.client.domain.repository.IClientService;
 import br.com.caseitau.moneytransfer.client.domain.repository.ITransferService;
 import br.com.caseitau.moneytransfer.client.dto.CreateTransferRequest;
@@ -25,25 +26,25 @@ public class CreateTransferUseCase {
         this.clientService = clientService;
     }
 
-    @Transactional
     public CreateTransferResponse execute(CreateTransferRequest createTransferRequest) {
-        var originClientOptional = clientService.findOneByAccountNumber(createTransferRequest.getOriginClientAccountNumber());
-        var originClient = originClientOptional.isPresent() ? originClientOptional.get() : null;
+        var originClient = clientService.findOneByAccountNumber(createTransferRequest.getOriginClientAccountNumber())
+                .orElseThrow(() -> {
+                    transferService.save(createTransferRequest, null, null, StatusEnum.REJECTED_CLIENT_NOT_EXISTS);
+                    throw new ClientNotFoundException();
+        });
 
-        var fromClientOptional = clientService.findOneByAccountNumber(createTransferRequest.getFromClientAccountNumber());
-        var fromClient = fromClientOptional.isPresent() ? fromClientOptional.get() : null;
-
-        if (isNull(originClient) || isNull(fromClient)) {
-            transferService.save(createTransferRequest, originClient, fromClient);
-            throw new ClientNotFoundException();
-        }
+        var fromClient = clientService.findOneByAccountNumber(createTransferRequest.getFromClientAccountNumber())
+                .orElseThrow(() -> {
+                    transferService.save(createTransferRequest, null, null, StatusEnum.REJECTED_CLIENT_NOT_EXISTS);
+                    throw new ClientNotFoundException();
+        });
 
         if (originClient.getAccountBalance().compareTo(createTransferRequest.getValue()) < COMPARE_BALANCE_WITH_VALUE) {
-            transferService.save(createTransferRequest, originClient, fromClient);
+            transferService.save(createTransferRequest, originClient, fromClient, StatusEnum.REJECTED_ORIGIN_VALUE_HIGHER);
             throw new ValueIsHigherThanAccountExcepetion();
         }
 
-        var transferEntity = transferService.save(createTransferRequest, originClient, fromClient).get();
+        var transferEntity = transferService.save(createTransferRequest, originClient, fromClient, StatusEnum.SUCCESS);
         return TransferMapper.transferEntityFromCreateTransferResponse(transferEntity);
     }
 }

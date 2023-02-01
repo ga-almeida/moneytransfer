@@ -48,12 +48,37 @@ public final class ClientDataTest {
         return clients;
     }
 
+    public static List<ClientEntity> basicCreateFiveCustomClients() {
+        List<ClientEntity> clients = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            var clientRequest = basicCreateClientRequestCustom(
+                    NAME_JOHN_DOE + i,
+                    ACCOUNT_NUMBER_JOHN_DOE + i,
+                    ACCOUNT_BALANCE_JOHN_DOE.add(BigDecimal.valueOf(i))
+            );
+            clients.add(ClientMapper.createClientRequestFromClientEntity(clientRequest));
+        }
+
+        return clients;
+    }
+
     public static ClientEntity basicCreateClientEntityJohnDoe() {
         return ClientEntity.builder()
                 .id(UUID.randomUUID())
                 .name(NAME_JOHN_DOE)
                 .accountNumber(ACCOUNT_NUMBER_JOHN_DOE)
                 .accountBalance(ACCOUNT_BALANCE_JOHN_DOE)
+                .createdAt(OffsetDateTime.now())
+                .updatedAt(OffsetDateTime.now())
+                .build();
+    }
+
+    public static ClientEntity basicCreateClientEntityJaneDoe() {
+        return ClientEntity.builder()
+                .id(UUID.randomUUID())
+                .name(NAME_JANE_DOE)
+                .accountNumber(ACCOUNT_NUMBER_JANE_DOE)
+                .accountBalance(ACCOUNT_BALANCE_JANE_DOE)
                 .createdAt(OffsetDateTime.now())
                 .updatedAt(OffsetDateTime.now())
                 .build();

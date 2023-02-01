@@ -30,7 +30,7 @@ public class ClientService implements IClientService {
 
     @Override
     public List<ClientEntity> findAll() {
-        return null;
+        return clientRepository.findAll();
     }
 
     @Override

@@ -47,8 +47,8 @@ public class CreateTransferUseCaseTest extends BaseUnitTest {
         when(clientService.findOneByAccountNumber(createTransferRequest.getFromClientAccountNumber()))
                 .thenReturn(fromClientOptional);
 
-        when(transferService.save(createTransferRequest, originClientOptional.get(), fromClientOptional.get()))
-                .thenReturn(TransferDataTest.basicCreateTransferEntityOptional());
+        when(transferService.save(createTransferRequest, originClientOptional.get(), fromClientOptional.get(), StatusEnum.SUCCESS))
+                .thenReturn(TransferDataTest.basicCreateTransferEntity());
 
         var transferResponse = sut.execute(createTransferRequest);
 

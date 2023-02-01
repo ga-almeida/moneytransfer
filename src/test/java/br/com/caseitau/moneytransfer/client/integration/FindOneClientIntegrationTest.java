@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 public class FindOneClientIntegrationTest extends BaseIntegrationTest {
     private static final String URLPath = "/v1/client/{accountNumber}";
 
@@ -31,7 +30,7 @@ public class FindOneClientIntegrationTest extends BaseIntegrationTest {
 
     @Test
     @DisplayName("Given a client exists, when calling find one client controller, then it returns status code 200.")
-    void createClientControllerSuccess() {
+    void findOneClientControllerStatusOk() {
         var clientEntity = clientRepository.saveAndFlush(ClientDataTest.basicCreateClientEntityJohnDoe());
 
         var response = given()
@@ -53,7 +52,7 @@ public class FindOneClientIntegrationTest extends BaseIntegrationTest {
 
     @Test
     @DisplayName("Given a client not exists, when calling find one client controller, then it returns status code 404.")
-    void createClientControllerStatusConflict() throws JsonProcessingException {
+    void findOneClientControllerStatusNotFound() {
         var messageExpected = "Client not exists.";
 
         var response = given()

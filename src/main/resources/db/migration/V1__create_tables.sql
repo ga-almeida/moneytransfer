@@ -12,7 +12,7 @@ CREATE TABLE transfers (
 	id                  uuid NOT NULL,
 	origin_client_id    uuid NULL,
 	from_client_id      uuid NULL,
-	"value"             numeric NOT NULL,
+	"VALUE"             numeric NOT NULL,
 	status              varchar NOT NULL,
 	created_at          timestamp NOT NULL,
 	updated_at          timestamp NULL,

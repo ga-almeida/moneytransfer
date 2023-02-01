@@ -2,10 +2,13 @@ package br.com.caseitau.moneytransfer.client.dto;
 
 import br.com.caseitau.moneytransfer.client.domain.entity.ClientEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListClientsResponse {
     private List<ClientEntity> clients;
+
+    public ListClientsResponse() {}
 
     private ListClientsResponse(List<ClientEntity> clients) {
         this.clients = clients;
@@ -19,7 +22,7 @@ public class ListClientsResponse {
         return new Builder();
     }
     public static final class Builder {
-        private List<ClientEntity> clients;
+        private List<ClientEntity> clients = new ArrayList<>();
 
         private Builder() {
         }

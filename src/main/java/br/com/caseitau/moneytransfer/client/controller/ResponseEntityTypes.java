@@ -21,4 +21,8 @@ public final class ResponseEntityTypes {
     public static <T> ResponseEntity<T> notFound(T responseError) {
         return ResponseEntity.status(NOT_FOUND).body(responseError);
     }
+
+    public static <T> ResponseEntity<T> badRequest(T responseError) {
+        return ResponseEntity.status(BAD_REQUEST).body(responseError);
+    }
 }

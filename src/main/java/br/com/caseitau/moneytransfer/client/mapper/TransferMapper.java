@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 public final class TransferMapper {
 
     public static TransferEntity createTransferRequestFromTransferEntity(
-            BigDecimal value, ClientEntity originClient, ClientEntity fromClient
+            BigDecimal value, ClientEntity originClient, ClientEntity fromClient, StatusEnum status
     ) {
         return TransferEntity.builder()
                 .originClient(originClient)
                 .fromClient(fromClient)
                 .value(value)
-                .status(StatusEnum.SUCCESS)
+                .status(status)
                 .build();
     }
 

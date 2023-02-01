@@ -32,7 +32,7 @@ public class CreateClientIntegrationTest extends BaseIntegrationTest {
 
     @Test
     @DisplayName("Given a valid client, when calling the created client controller, then it returns create client.")
-    void createClientControllerSuccess() throws JsonProcessingException {
+    void createClientControllerStatusCreated() throws JsonProcessingException {
         var request = ClientDataTest.basicCreateClientRequestJohnDoe();
 
         var response = given()
