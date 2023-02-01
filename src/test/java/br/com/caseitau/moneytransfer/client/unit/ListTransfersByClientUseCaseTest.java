@@ -19,8 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-@BaseUnitTest
-public class ListTransfersByClientUseCaseTest {
+public class ListTransfersByClientUseCaseTest extends BaseUnitTest {
     private ListTransfersByClientUseCase sut;
 
     @Mock

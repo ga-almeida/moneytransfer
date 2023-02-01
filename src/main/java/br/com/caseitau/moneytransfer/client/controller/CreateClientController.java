@@ -1,6 +1,5 @@
 package br.com.caseitau.moneytransfer.client.controller;
 
-import br.com.caseitau.moneytransfer.client.controller.ResponseEntityTypes;
 import br.com.caseitau.moneytransfer.client.dto.CreateClientRequest;
 import br.com.caseitau.moneytransfer.client.dto.CreateClientResponse;
 import br.com.caseitau.moneytransfer.client.useCases.CreateClientUseCase;

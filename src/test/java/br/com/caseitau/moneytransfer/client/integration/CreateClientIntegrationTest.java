@@ -3,26 +3,25 @@ package br.com.caseitau.moneytransfer.client.integration;
 import br.com.caseitau.moneytransfer.client.controller.CreateClientController;
 import br.com.caseitau.moneytransfer.client.dataTest.ClientDataTest;
 import br.com.caseitau.moneytransfer.client.domain.repository.ClientRepository;
-import br.com.caseitau.moneytransfer.client.dto.CreateClientRequest;
 import br.com.caseitau.moneytransfer.client.dto.CreateClientResponse;
+import br.com.caseitau.moneytransfer.client.exception.ResponseError;
 import br.com.caseitau.moneytransfer.core.BaseIntegrationTest;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static io.restassured.RestAssured.given;
 
-@BaseIntegrationTest
-public class CreateClientIntegrationTest {
-    private static final HttpStatusCode HTTP_CODE_CREATED = HttpStatusCode.valueOf(201);
-    private static final HttpStatusCode HTTP_CODE_CONFLIC = HttpStatusCode.valueOf(409);
+
+public class CreateClientIntegrationTest extends BaseIntegrationTest {
+    private static final String URLPath = "/v1/client";
 
     @Autowired
     private CreateClientController createClientController;
@@ -32,41 +31,50 @@ public class CreateClientIntegrationTest {
 
     @BeforeEach
     void setupBeforeEach() {
+        mapperObject = new ObjectMapper();
         clientRepository.deleteAll();
     }
 
     @Test
     @DisplayName("Given a valid client, when calling the created client controller, then it returns create client.")
-    void createClientControllerSuccess() throws ExecutionException, InterruptedException {
-        var createClientRequest = ClientDataTest.basicCreateClientRequestJohnDoe();
+    void createClientControllerSuccess() throws ExecutionException, InterruptedException, JsonProcessingException {
+        var request = ClientDataTest.basicCreateClientRequestJohnDoe();
 
-        var response = createClientController.createClient(createClientRequest);
+        var response = given()
+                .header("Content-type", "application/json")
+                .body(mapperObject.writeValueAsString(request))
+                .when()
+                .post(URLPath)
+                .then()
+                .statusCode(HttpStatus.CREATED.value())
+                .extract()
+                .as(CreateClientResponse.class);
 
-        assertEquals(HTTP_CODE_CREATED, response.get().getStatusCode());
-        assertEquals(createClientRequest.getName(), response.get().getBody().getName());
-        assertEquals(createClientRequest.getAccountNumber(), response.get().getBody().getAccountNumber());
-        assertEquals(createClientRequest.getAccountBalance(), response.get().getBody().getAccountBalance());
-        assertNotNull(response.get().getBody().getId());
-        assertNotNull(response.get().getBody().getCreatedAt());
+        Assertions.assertNotNull(response.getId());
+        Assertions.assertEquals(request.getName(), response.getName());
+        Assertions.assertEquals(request.getAccountNumber(), response.getAccountNumber());
+        Assertions.assertEquals(request.getAccountBalance(), response.getAccountBalance());
+        Assertions.assertNotNull(response.getCreatedAt());
     }
 
     @Test
     @DisplayName("Given a client with a account number already exists, when calling the created client controller, then it returns status code 409.")
-    void createClientControllerStatusConflict() {
-        String messageExpected = "Account number already exists.";
-        String errorCodeExpected = "409";
+    void createClientControllerStatusConflict() throws Exception {
+        var messageExpected = "Account number already exists.";
 
-        var clientEntity = ClientDataTest.basicCreateClientEntityJohnDoe();
-        clientRepository.saveAndFlush(clientEntity);
+        clientRepository.saveAndFlush(ClientDataTest.basicCreateClientEntityJohnDoe());
+        var request = ClientDataTest.basicCreateClientRequestJohnDoe();
 
-        var createClientRequest = ClientDataTest.basicCreateClientRequestJohnDoe();
-        var response = createClientController.createClient(createClientRequest);
+        var response = given()
+                .header("Content-type", "application/json")
+                .body(mapperObject.writeValueAsString(request))
+                .when()
+                .post(URLPath)
+                .then()
+                .statusCode(HttpStatus.CONFLICT.value())
+                .extract()
+                .as(ResponseError.class);
 
-        assertAll(
-
-        );
-        assertEquals(HTTP_CODE_CONFLIC, response.get().getStatusCode());
-        assertEquals(messageExpected, response.);
-        assertEquals(errorCodeExpected, response.get().getBody().getAccountNumber());
+        Assertions.assertEquals(messageExpected, response.getMessage());
     }
 }

@@ -16,8 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.when;
 
-@BaseUnitTest
-public class findOneClientUseCaseTest {
+public class findOneClientUseCaseTest extends BaseUnitTest {
     private FindOneClientUseCase sut;
 
     @Mock

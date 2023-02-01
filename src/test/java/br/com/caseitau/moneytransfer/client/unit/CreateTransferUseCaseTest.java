@@ -20,8 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
-@BaseUnitTest
-public class CreateTransferUseCaseTest {
+public class CreateTransferUseCaseTest extends BaseUnitTest {
     private CreateTransferUseCase sut;
 
     @Mock

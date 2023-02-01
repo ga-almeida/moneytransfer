@@ -12,8 +12,7 @@ import org.mockito.Mock;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-@BaseUnitTest
-public class ListClientsUseCaseTest {
+public class ListClientsUseCaseTest extends BaseUnitTest {
     private ListClientsUseCase sut;
 
     @Mock
