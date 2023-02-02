@@ -14,15 +14,24 @@ Serviço apis bancarias.
 
 ### Iniciando projeto pela primeira vez
 
+- Requisitos minimos: 
+  - Java 17.
+  - Maven
+
 ```bash
-# Na raiz do projeto execute o seguintes comandos:
+# Na raiz do projeto execute o seguinte comando:
 mvn compile
+
+# Logo depois de finalizar a compilação, execute:
 mvn package
 
-#Ira gerar um arquivo .jar na pasta target, podendo executar com o seguinte comando:
-java -jar <nome_do_jar>.jar
+# Entra na pasta target onde foi gerado o .jar:
+cd target
 
-# Acesse o seguinte endereço no navegador usando a documentação
+# Execute o .jar com o seguinte comando:
+java -jar moneytransfer-0.0.1-SNAPSHOT.jar
+
+# Acesse o seguinte endereço no navegador para utilizar as apis documentadas:
 http://localhost:8080/v1/swagger-ui/index.html
 ```
 
@@ -43,8 +52,6 @@ http://localhost:8080/v1/swagger-ui/index.html
   <img align="center" alt="java" src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white" />
   <img align="center" alt="spring" src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white" />
   <img align="center" alt="swagger" src="https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white" />
-
-[//]: # (  <img align="center" alt="docker" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" />)
 
 </div>
 

@@ -28,7 +28,7 @@ public class TransferService implements ITransferService {
             StatusEnum status
     ) {
         var transferEntity = TransferMapper.createTransferRequestFromTransferEntity(
-                createTransferRequest.getValue(),
+                createTransferRequest.git aetValue(),
                 originClient,
                 fromClient,
                 status);
