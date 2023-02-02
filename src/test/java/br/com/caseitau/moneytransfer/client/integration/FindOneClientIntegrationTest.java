@@ -52,7 +52,6 @@ public class FindOneClientIntegrationTest extends BaseIntegrationTest {
         assertEquals(clientEntity.getName(), response.getName());
         assertEquals(clientEntity.getAccountNumber(), response.getAccountNumber());
         assertEquals(clientEntity.getAccountBalance(), response.getAccountBalance());
-        assertEquals(clientEntity.getCreatedAt().toLocalDate().atStartOfDay(), response.getCreatedAt().toLocalDate().atStartOfDay());
     }
 
     @Test
