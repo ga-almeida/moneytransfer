@@ -10,12 +10,12 @@ Serviço apis bancarias.
 - [x] Realizar transferencias.
 - [x] Busca todos clientes cadastrados.
 - [x] Busca cliente pelo numero da conta.
-- [x] Busca todas transferencias para umd eterminado cliente em ordem decrescente de cadastro.
+- [x] Busca todas transferencias para um determinado cliente em ordem decrescente de cadastro.
 
 ### Iniciando projeto pela primeira vez
 
 - Requisitos minimos: 
-  - Java 17.
+  - Java 17
   - Maven
 
 ```bash
@@ -25,7 +25,7 @@ mvn compile
 # Logo depois de finalizar a compilação, execute:
 mvn package
 
-# Entra na pasta target onde foi gerado o .jar:
+# Entrar na pasta target onde foi gerado o .jar:
 cd target
 
 # Execute o .jar com o seguinte comando:
@@ -42,6 +42,7 @@ http://localhost:8080/v1/swagger-ui/index.html
 - Testes integrados
 - H2
 - Arquitetura baseada em Clean Arch
+- DDD
 - Principios SOLID
 - Criação de Annotations para validação de dados
 
